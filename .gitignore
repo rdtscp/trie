@@ -9,5 +9,8 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 
-# Ignore Build Files
+# Ignore Build Files.
 build/
+
+# Ignore VSCode Settings.
+.vscode/
