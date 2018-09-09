@@ -19,8 +19,27 @@ Trie::Trie(std::vector<std::string> words) {
 }
 
 bool Trie::hasString(std::string word) {
-  /* @TODO */
-  return true;
+  if (word == "")
+    return true;
+
+  char        head = word[0];
+  std::string tail = getTail(word);
+  if (dictionary.find(head) != dictionary.end())
+    return dictionary[head]->hasString(tail);
+
+  return false;
+}
+
+bool Trie::hasPrefix(std::string word) {
+  if (word == "")
+    return true;
+
+  char        head = word[0];
+  std::string tail = getTail(word);
+  if (dictionary.find(head) != dictionary.end())
+    return dictionary[head]->hasPrefix(tail);
+
+  return false;
 }
 
 /* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
