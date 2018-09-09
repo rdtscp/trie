@@ -6,6 +6,7 @@
 
 #include "../include/Trie.h"
 
+/* Assert that a normal Trie Constructs without error. */
 TEST(TrieTest, TestConstruction) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
@@ -13,13 +14,7 @@ TEST(TrieTest, TestConstruction) {
 	ASSERT_TRUE(true);
 }
 
-TEST(TrieTest, TestValidWordExists) {
-	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
-
-	ASSERT_TRUE(dict.hasString("char"));
-}
-
+/* Test Constructing an empty Trie */
 TEST(TrieTest, EmptyDictionary) {
 	std::vector<std::string> words = { };
   Trie dict(words);
@@ -27,12 +22,62 @@ TEST(TrieTest, EmptyDictionary) {
 	ASSERT_TRUE(true);
 }
 
+/* Test Constructing a Dictionary with a Duplicate Word */
 TEST(TrieTest, DuplicateDictionary) {
 	std::vector<std::string> words = { "test", "test" };
   Trie dict(words);
 
 	ASSERT_TRUE(dict.hasString("test"));
 }
+
+/* Test a Valid Word Exists. */
+TEST(TrieTest, ValidWordHasEntry) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_TRUE(dict.hasString("char"));
+}
+
+/* Test an Invalid Word Exists */
+TEST(TrieTest, InvalidWordHasEntry) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_FALSE(dict.hasString("bli"));
+}
+
+/* Test an empty Word Exists */
+TEST(TrieTest, EmptyWordHasString) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_TRUE(dict.hasString(""));
+}
+
+/* Test a Valid Prefix Exists */
+TEST(TrieTest, ValidPrefixHasPrefix) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_TRUE(dict.hasPrefix("cha"));
+}
+
+/* Test an Invalid Prefix Exists */
+TEST(TrieTest, InvalidPrefixHasPrefix) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_FALSE(dict.hasPrefix("bli"));
+}
+
+/* Test an empty Prefix Exists */
+TEST(TrieTest, EmptyPrefixHasPrefix) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_TRUE(dict.hasPrefix(""));
+}
+
 
 // The fixture for testing class Project1. From google test primer.
 class Test_Trie : public ::testing::Test {
