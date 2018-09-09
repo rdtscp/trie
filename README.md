@@ -23,10 +23,9 @@ cd ..
 rm -rf ./build/
 ```
 # Development/Testing
+Install using the above, then run
 ```
-mkdir build
 cd build
-cmake ..
 make
 make test
 cd ..
