@@ -108,6 +108,19 @@ TEST(TrieTest, InsertDefaultConstructed) {
 	ASSERT_TRUE(dict.hasString("table"));
 }
 
+/* Test Copy Constructor Works */
+TEST(TrieTest, CopyConstructor) {
+	std::vector<std::string> words = { "c", "char", "chai", "chair", "ant" };
+  Trie dict1(words);
+
+	ASSERT_TRUE(dict1.hasString("char"));
+
+	Trie dict2(dict1);
+
+	ASSERT_TRUE(dict1.hasString("char"));
+	ASSERT_TRUE(dict2.hasString("char"));
+}
+
 // The fixture for testing class Project1. From google test primer.
 class Test_Trie : public ::testing::Test {
 	protected:
