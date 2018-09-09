@@ -7,6 +7,7 @@ class TrieNode {
   public:
 
     TrieNode(std::string word);
+    ~TrieNode();
 
     bool hasString(std::string query);
 
@@ -16,6 +17,7 @@ class TrieNode {
 
   private:
 
+    bool isEntry = false;
     std::map<char, TrieNode*> children;
 
     std::string getTail(std::string word);
