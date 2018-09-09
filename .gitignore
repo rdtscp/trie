@@ -12,5 +12,5 @@ CTestTestfile.cmake
 # Ignore Build Files.
 build/
 
-# Ignore VSCode Settings.
-.vscode/
+# Development Branch, Include VSCode Settings.
+# .vscode/
