@@ -9,6 +9,12 @@ class TrieNode {
     /* Takes in a string representing the remaining portion of the word, and creates a structure accordingly. */
     TrieNode(std::string word);
 
+    /* Copy Constructor */
+    TrieNode(const TrieNode& copy);
+
+    /* Assignment Operator */
+    TrieNode& operator=(TrieNode rhs);
+
     /* Used recursively to determine if a string exists within the parent Trie. */
     bool hasString(std::string query);
 

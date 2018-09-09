@@ -15,6 +15,12 @@ class Trie {
     /* Takes in a vector of strings, and constructs a Trie. */
     Trie(std::vector<std::string> dictionary);
 
+    /* Copy Constructor */
+    Trie(const Trie& copy);
+
+    /* Assignment Operator */
+    Trie& operator=(Trie rhs);
+
     /* Queries the Trie to see if a string exists. */
     bool hasString(std::string query);
 
