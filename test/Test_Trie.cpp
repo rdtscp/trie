@@ -110,7 +110,7 @@ TEST(TrieTest, InsertDefaultConstructed) {
 
 /* Test Copy Constructor Works */
 TEST(TrieTest, CopyConstructor) {
-	std::vector<std::string> words = { "c", "char", "chai", "chair", "ant" };
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict1(words);
 
 	ASSERT_TRUE(dict1.hasString("char"));
@@ -119,6 +119,75 @@ TEST(TrieTest, CopyConstructor) {
 
 	ASSERT_TRUE(dict1.hasString("char"));
 	ASSERT_TRUE(dict2.hasString("char"));
+}
+
+/* Test =operator normal usage. */
+TEST(TrieTest, EqualOperatorCopiesNormal) {
+	std::vector<std::string> words = { "char" };
+  Trie dict1(words);
+
+	ASSERT_TRUE(dict1.hasString("char"));
+
+	Trie dict2 = dict1;
+
+	ASSERT_TRUE(dict1.hasString("char"));
+	ASSERT_TRUE(dict2.hasString("char"));
+} 
+
+/* Test =operator edge cases. */
+TEST(TrieTest, EqualOperatorCopiesEdge) {
+	std::vector<std::string> words = {};
+  Trie defaultDict;
+  Trie emptyDict(words);
+
+	ASSERT_FALSE(defaultDict.hasString("word"));
+	ASSERT_FALSE(emptyDict.hasString("word"));
+
+	Trie testDict1 = defaultDict;
+	Trie testDict2 = emptyDict;
+
+	ASSERT_FALSE(testDict1.hasString("word"));
+	ASSERT_FALSE(testDict2.hasString("word"));
+} 
+
+/* Test when Inefficient Construction is Used. */
+TEST(TrieTest, InefficentConstruction) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+	Trie dict = Trie(words);
+
+	ASSERT_TRUE(dict.hasString("char"));
+}
+
+/* Test that inserting to a Copy doesn't effect the original. */
+TEST(TrieTest, InsertWordToCopy) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+	Trie dictOne = Trie(words);
+
+	ASSERT_TRUE(dictOne.hasString("char"));
+
+	Trie dictTwo   = dictOne;
+	Trie dictThree(dictTwo);
+
+	ASSERT_TRUE(dictTwo.hasString("char"));
+	ASSERT_TRUE(dictThree.hasString("char"));
+
+	dictTwo.insert("table");
+
+	ASSERT_FALSE(dictOne.hasString("table"));
+	ASSERT_TRUE(dictTwo.hasString("table"));
+	ASSERT_FALSE(dictThree.hasString("table"));
+}
+
+/* Test that every word inserted matches its prefixes. */
+TEST(TrieTest, InsertedWordsHasPrefix) {
+	Trie dict;
+	std::string test = "VeryLongStringWhichHasLotsOfPrefixes!";
+	dict.insert(test);
+
+	for (int i = 0; i < test.length(); i++) {
+		std::string currPrefix = test.substr(0, i);
+		ASSERT_TRUE(dict.hasPrefix(currPrefix));
+	}
 }
 
 // The fixture for testing class Project1. From google test primer.
