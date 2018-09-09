@@ -4,6 +4,8 @@
 
 #include "../include/Trie.h"
 
+Trie::Trie() {}
+
 Trie::Trie(std::vector<std::string> words) {
   for (std::string word: words) {
     char        head = word[0];
@@ -16,6 +18,10 @@ Trie::Trie(std::vector<std::string> words) {
       dictionary[head]->insert(tail);
     }
   }
+}
+Trie::~Trie() {
+  for (const auto& word: dictionary)
+    delete word.second;
 }
 
 bool Trie::hasString(std::string word) {
@@ -40,6 +46,20 @@ bool Trie::hasPrefix(std::string word) {
     return dictionary[head]->hasPrefix(tail);
 
   return false;
+}
+
+void Trie::insert(std::string word) {
+  if (word == "")
+    return;
+  else {
+    char        head = word[0];
+    std::string tail = getTail(word);
+
+    if (dictionary.find(head) == dictionary.end())
+      dictionary[head] = new TrieNode(tail);
+    else
+      dictionary[head]->insert(tail);
+  }
 }
 
 /* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
