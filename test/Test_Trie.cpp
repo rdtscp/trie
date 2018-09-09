@@ -6,8 +6,15 @@
 
 #include "../include/Trie.h"
 
+/* Assert that a Default Trie Constructs without error. */
+TEST(TrieTest, TestDefaultConstruction) {
+  Trie dict;
+
+	ASSERT_TRUE(true);
+}
+
 /* Assert that a normal Trie Constructs without error. */
-TEST(TrieTest, TestConstruction) {
+TEST(TrieTest, TestNormalConstruction) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
@@ -82,6 +89,17 @@ TEST(TrieTest, EmptyPrefixHasPrefix) {
 TEST(TrieTest, ExistingTrieInsertWord) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
+
+	ASSERT_FALSE(dict.hasString("table"));
+
+	dict.insert("table");
+
+	ASSERT_TRUE(dict.hasString("table"));
+}
+
+/* Test Inserting into a Default Constructed Trie. */
+TEST(TrieTest, InsertDefaultConstructed) {
+	Trie dict;
 
 	ASSERT_FALSE(dict.hasString("table"));
 
