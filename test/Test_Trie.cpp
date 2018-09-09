@@ -78,6 +78,17 @@ TEST(TrieTest, EmptyPrefixHasPrefix) {
 	ASSERT_TRUE(dict.hasPrefix(""));
 }
 
+/* Test Inserting a word into an existing Trie. */
+TEST(TrieTest, ExistingTrieInsertWord) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_FALSE(dict.hasString("table"));
+
+	dict.insert("table");
+
+	ASSERT_TRUE(dict.hasString("table"));
+}
 
 // The fixture for testing class Project1. From google test primer.
 class Test_Trie : public ::testing::Test {
