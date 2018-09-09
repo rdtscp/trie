@@ -8,11 +8,6 @@ TrieNode::TrieNode(std::string word) : children() {
   insert(word);
 }
 
-TrieNode::~TrieNode() {
-  for (const auto& child: children)
-    delete child.second;
-}
-
 bool TrieNode::hasString(std::string word) {
   if (word == "")
     return isEntry;
@@ -45,7 +40,7 @@ void TrieNode::insert(std::string word) {
     std::string tail = getTail(word);
 
     if (children.find(head) == children.end())
-      children[head] = new TrieNode(tail);
+      children[head] = std::unique_ptr<TrieNode>(new TrieNode(tail));
     else
       children[head]->insert(tail);
   }

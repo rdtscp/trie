@@ -1,6 +1,7 @@
-#include <map>
-#include <string>
+#include <memory>
 #include <vector>
+#include <string>
+#include <map>
 
 #include "TrieNode.h"
 
@@ -14,9 +15,6 @@ class Trie {
     /* Takes in a vector of strings, and constructs a Trie. */
     Trie(std::vector<std::string> dictionary);
 
-    /* Cleans up the Trie */
-    ~Trie();
-
     /* Queries the Trie to see if a string exists. */
     bool hasString(std::string query);
 
@@ -29,7 +27,7 @@ class Trie {
   private:
   
     /* Contains all the words in the dictionary starting from their first character. */
-    std::map<char, TrieNode*> dictionary;
+    std::map<char, std::unique_ptr<TrieNode>> dictionary;
 
     /* Helper for safely returning the tail of a string. */
     std::string getTail(std::string word);

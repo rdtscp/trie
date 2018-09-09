@@ -9,9 +9,6 @@ class TrieNode {
     /* Takes in a string representing the remaining portion of the word, and creates a structure accordingly. */
     TrieNode(std::string word);
 
-    /* Cleans up the Trie */
-    ~TrieNode();
-
     /* Used recursively to determine if a string exists within the parent Trie. */
     bool hasString(std::string query);
 
@@ -26,7 +23,7 @@ class TrieNode {
     /* Marks if this trie node is an entry in the Trie. */
     bool isEntry = false;
     /* Contains all possible extensions of the word prefix up until this point. */
-    std::map<char, TrieNode*> children;
+    std::map<char, std::unique_ptr<TrieNode>> children;
 
     /* Helper for safely returning the tail of a string. */
     std::string getTail(std::string word);

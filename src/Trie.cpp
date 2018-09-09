@@ -1,3 +1,4 @@
+#include <memory>
 #include <vector>
 #include <string>
 #include <map>
@@ -8,20 +9,8 @@ Trie::Trie() {}
 
 Trie::Trie(std::vector<std::string> words) {
   for (std::string word: words) {
-    char        head = word[0];
-    std::string tail = getTail(word);
-
-    if (dictionary.find(head) == dictionary.end()) {
-      dictionary[head] = new TrieNode(tail);
-    }
-    else {
-      dictionary[head]->insert(tail);
-    }
+    insert(word);
   }
-}
-Trie::~Trie() {
-  for (const auto& word: dictionary)
-    delete word.second;
 }
 
 bool Trie::hasString(std::string word) {
@@ -56,7 +45,7 @@ void Trie::insert(std::string word) {
     std::string tail = getTail(word);
 
     if (dictionary.find(head) == dictionary.end())
-      dictionary[head] = new TrieNode(tail);
+      dictionary[head] = std::unique_ptr<TrieNode>(new TrieNode(tail));
     else
       dictionary[head]->insert(tail);
   }
