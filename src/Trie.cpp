@@ -13,6 +13,19 @@ Trie::Trie(std::vector<std::string> words) {
   }
 }
 
+Trie::Trie(const Trie& copy) {
+  for (const auto& dictEntry: copy.dictionary) {
+    dictionary[dictEntry.first] = std::unique_ptr<TrieNode>(new TrieNode(*dictEntry.second));
+  }
+}
+
+Trie& Trie::operator=(Trie rhs) {
+  for (const auto& dictEntry: rhs.dictionary) {
+    dictionary[dictEntry.first] = std::unique_ptr<TrieNode>(new TrieNode(*dictEntry.second));
+  }
+  return *this;
+}
+
 bool Trie::hasString(std::string word) {
   if (word == "")
     return true;

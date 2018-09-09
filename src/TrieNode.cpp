@@ -8,6 +8,21 @@ TrieNode::TrieNode(std::string word) : children() {
   insert(word);
 }
 
+TrieNode::TrieNode(const TrieNode& copy) {
+  isEntry = copy.isEntry;
+  for (const auto& subNode: copy.children) {
+    children[subNode.first] = std::unique_ptr<TrieNode>(new TrieNode(*subNode.second));
+  }
+}
+
+TrieNode& TrieNode::operator=(TrieNode rhs) {
+  isEntry = rhs.isEntry;
+  for (const auto& subNode: rhs.children) {
+    children[subNode.first] = std::unique_ptr<TrieNode>(new TrieNode(*subNode.second));
+  }
+  return *this;
+}
+
 bool TrieNode::hasString(std::string word) {
   if (word == "")
     return isEntry;
