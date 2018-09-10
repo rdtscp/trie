@@ -20,6 +20,9 @@ Trie::Trie(const Trie& copy) {
 }
 
 Trie& Trie::operator=(Trie rhs) {
+  if (&rhs == this) {
+    return *this;
+  }
   for (const auto& dictEntry: rhs.dictionary) {
     dictionary[dictEntry.first] = std::unique_ptr<TrieNode>(new TrieNode(*dictEntry.second));
   }
