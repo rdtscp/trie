@@ -3,12 +3,22 @@ set (CMAKE_CXX_STANDARD 17)
 
 project(Trie)
 
-add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
-install(TARGETS Trie DESTINATION lib)
-install(FILES include/trie include/Trie.h include/TrieNode.h DESTINATION include)
+IF(CMAKE_BUILD_TYPE MATCHES Release)
+  message(" --- Building in Release Mode ---")
+  add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
+  install(
+    TARGETS Trie
+    DESTINATION lib
+  )
+  install(
+    FILES include/trie include/Trie.h include/TrieNode.h
+    DESTINATION include
+  )
+ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -g")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
-
-enable_testing()
-add_subdirectory(test)
+IF(CMAKE_BUILD_TYPE MATCHES Debug)
+  message(" --- Building in Debug Mode ---")
+  add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
+  enable_testing()
+  add_subdirectory(test)
+ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
