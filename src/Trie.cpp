@@ -7,8 +7,14 @@
 
 Trie::Trie() {}
 
-Trie::Trie(std::vector<std::string> words) {
-  for (std::string word: words) {
+Trie::Trie(std::vector<std::string> dictionary) {
+  for (std::string word: dictionary) {
+    insert(word);
+  }
+}
+
+Trie::Trie(std::initializer_list<std::string> dictionary) {
+  for (std::string word: dictionary) {
     insert(word);
   }
 }

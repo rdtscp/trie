@@ -18,6 +18,9 @@ class Trie {
     /* Takes in a vector of strings, and constructs a Trie. */
     Trie(std::vector<std::string> dictionary);
 
+    /* Initialiser-List Constructor */
+    Trie(std::initializer_list<std::string> dictionary);
+
     /* Copy Constructor */
     Trie(const Trie& copy);
 
