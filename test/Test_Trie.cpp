@@ -21,6 +21,18 @@ TEST(TrieTest, TestNormalConstruction) {
 	ASSERT_TRUE(true);
 }
 
+/* Test that copying/assigning to itself works. */
+TEST(TrieTest, CopyToSelf) {
+	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
+  Trie dict(words);
+
+	ASSERT_TRUE(dict.find("char"));
+
+	dict = dict;
+
+	ASSERT_TRUE(dict.find("char"));
+}
+
 /* Test Constructing an empty Trie */
 TEST(TrieTest, EmptyDictionary) {
 	std::vector<std::string> words = { };
