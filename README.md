@@ -14,6 +14,7 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 make install
+cd ..
 ```
 # Debug Install & Run Unit Tests
 ```
