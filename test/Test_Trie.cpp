@@ -21,6 +21,12 @@ TEST(TrieTest, TestNormalConstruction) {
 	ASSERT_TRUE(true);
 }
 
+TEST(TrieTest, TestInitializerListConstruction) {
+  Trie dict = { "char", "chai", "chair", "ant" };
+
+	ASSERT_TRUE(dict.find("char"));
+}
+
 /* Test that copying/assigning to itself works. */
 TEST(TrieTest, CopyToSelf) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
