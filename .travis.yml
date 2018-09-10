@@ -1,6 +1,9 @@
 language: cpp
 compiler: clang
 
+install:
+- if [ "$CXX" = "clang++" ]; then export CXX="clang++ -std=c++17"; fi
+
 script: 
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
