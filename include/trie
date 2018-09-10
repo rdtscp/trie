@@ -1,0 +1,6 @@
+#ifndef TRIE
+
+#define TRIE
+#include "Trie.h"
+
+#endif
