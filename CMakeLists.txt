@@ -19,6 +19,14 @@ ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 IF(CMAKE_BUILD_TYPE MATCHES Debug)
   message(" --- Building in Debug Mode ---")
   add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
+  install(
+    TARGETS Trie
+    DESTINATION lib
+  )
+  install(
+    FILES include/trie include/Trie.h include/TrieNode.h
+    DESTINATION include
+  )
   enable_testing()
   add_subdirectory(test)
 ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
