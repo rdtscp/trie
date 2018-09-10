@@ -1,3 +1,6 @@
+#ifndef TRIENODE_H
+#define TRIENODE_H
+
 #include <map>
 #include <string>
 #include <vector>
@@ -35,3 +38,5 @@ class TrieNode {
     std::string getTail(std::string word);
 
 };
+
+#endif

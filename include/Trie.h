@@ -1,3 +1,6 @@
+#ifndef TRIE_H
+#define TRIE_H
+
 #include <memory>
 #include <vector>
 #include <string>
@@ -39,3 +42,5 @@ class Trie {
     std::string getTail(std::string word);
 
 };
+
+#endif
