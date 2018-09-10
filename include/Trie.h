@@ -22,10 +22,10 @@ class Trie {
     Trie& operator=(Trie rhs);
 
     /* Queries the Trie to see if a string exists. */
-    bool hasString(std::string query);
+    bool find(std::string query);
 
     /* Queries the Trie to see if a prefix of a string exists. */
-    bool hasPrefix(std::string prefix);
+    bool has_prefix(std::string prefix);
 
     /* Inserts a word into the Trie. */
     void insert(std::string word);

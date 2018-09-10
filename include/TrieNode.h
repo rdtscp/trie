@@ -16,10 +16,10 @@ class TrieNode {
     TrieNode& operator=(TrieNode rhs);
 
     /* Used recursively to determine if a string exists within the parent Trie. */
-    bool hasString(std::string query);
+    bool find(std::string query);
 
     /* Used recursively to determine if a prefix of a string exists within the parent Trie. */
-    bool hasPrefix(std::string prefix);
+    bool has_prefix(std::string prefix);
 
     /* Used recursively to insert a word into the parent Trie. */
     void insert(std::string word);

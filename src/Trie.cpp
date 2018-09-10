@@ -26,26 +26,26 @@ Trie& Trie::operator=(Trie rhs) {
   return *this;
 }
 
-bool Trie::hasString(std::string word) {
+bool Trie::find(std::string word) {
   if (word == "")
     return true;
 
   char        head = word[0];
   std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
-    return dictionary[head]->hasString(tail);
+    return dictionary[head]->find(tail);
 
   return false;
 }
 
-bool Trie::hasPrefix(std::string word) {
+bool Trie::has_prefix(std::string word) {
   if (word == "")
     return true;
 
   char        head = word[0];
   std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
-    return dictionary[head]->hasPrefix(tail);
+    return dictionary[head]->has_prefix(tail);
 
   return false;
 }

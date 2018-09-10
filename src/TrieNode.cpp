@@ -23,26 +23,26 @@ TrieNode& TrieNode::operator=(TrieNode rhs) {
   return *this;
 }
 
-bool TrieNode::hasString(std::string word) {
+bool TrieNode::find(std::string word) {
   if (word == "")
     return isEntry;
 
   char        head = word[0];
   std::string tail = getTail(word);
   if (children.find(head) != children.end())
-    return children[head]->hasString(tail);
+    return children[head]->find(tail);
 
   return false;
 }
 
-bool TrieNode::hasPrefix(std::string word) {
-  if (word == "")
+bool TrieNode::has_prefix(std::string prefix) {
+  if (prefix == "")
     return true;
 
-  char        head = word[0];
-  std::string tail = getTail(word);
+  char        head = prefix[0];
+  std::string tail = getTail(prefix);
   if (children.find(head) != children.end())
-    return children[head]->hasPrefix(tail);
+    return children[head]->has_prefix(tail);
 
   return false;
 }
