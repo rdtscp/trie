@@ -15,13 +15,13 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 make install
 ```
-# Debug Install/Development/Testing
-Install using the above, then run
+# Debug Install & Run Unit Tests
 ```
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 make
+make install
 make test
 cd ..
 ```
