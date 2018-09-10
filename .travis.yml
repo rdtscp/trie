@@ -1,13 +1,18 @@
+dist: trusty
+sudo: require
+
 language: cpp
-compiler: clang++
+compiler: clang
 
 addons:
   apt:
     sources:
+      - llvm-toolchain-trusty-5.0
       - george-edison55-precise-backports
     packages:
+      - clang-5.0
       - cmake-data
-      - cmake
+      - cmake      
 
 matrix:
   include:
@@ -25,7 +30,8 @@ matrix:
 before_install:
     - eval "${MATRIX_EVAL}"
 
-script: 
+script:
+  - CXX=/usr/bin/clang++-5.0
   - cd ${TRAVIS_BUILD_DIR}
   - mkdir build
   - cd ./build
