@@ -1,5 +1,6 @@
 # Trie
 [![Build Status](https://travis-ci.com/acwilson96/Trie.svg?branch=master)](https://travis-ci.com/acwilson96/Trie)
+![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 Trie implementation in C++. Built using CMake and Google Test. 
 
