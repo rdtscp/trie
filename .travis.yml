@@ -15,6 +15,7 @@ addons:
       - cmake-data
       - cmake
       - g++-6
+      - lcov
       
 
 matrix:
