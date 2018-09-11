@@ -208,6 +208,20 @@ TEST(TrieTest, InsertedWordsHasPrefix) {
 	}
 }
 
+TEST(TrieTest, NewLineEntries) {
+	Trie dict = { "new\nline" };
+
+	ASSERT_TRUE(dict.find("new\nline"));
+	ASSERT_TRUE(dict.has_prefix("new\n"));
+}
+
+TEST(TrieTest, NullTerminatorEntries) {
+	Trie dict = { "null\0terminator" };
+
+	ASSERT_TRUE(dict.find("null\0terminator"));
+	ASSERT_TRUE(dict.has_prefix("null\0"));
+}
+
 // The fixture for testing class Project1. From google test primer.
 class Test_Trie : public ::testing::Test {
 	protected:
