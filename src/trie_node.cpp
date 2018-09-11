@@ -2,7 +2,7 @@
 #include <string>
 #include <map>
 
-#include "../include/Trie.h"
+#include "../include/trie.h"
 
 trie_node::trie_node(std::string word) : children() {
   insert(word);
