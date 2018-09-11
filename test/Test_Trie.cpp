@@ -6,6 +6,8 @@
 
 #include "../include/Trie.h"
 
+using namespace ads;
+
 /* Assert that a Default Trie Constructs without error. */
 TEST(TrieTest, DefaultConstruction) {
   Trie dict;

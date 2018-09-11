@@ -5,6 +5,8 @@
 
 #include "../include/Trie.h"
 
+using namespace ads;
+
 Trie::Trie() {}
 
 Trie::Trie(std::vector<std::string> dictionary) {
