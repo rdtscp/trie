@@ -41,13 +41,13 @@ set_target_properties(libgmock PROPERTIES
 # I couldn't make it work with INTERFACE_INCLUDE_DIRECTORIES
 include_directories("${source_dir}/googletest/include")
 
-ADD_EXECUTABLE(runUnitTests Test_Trie.cpp main.cpp)
+ADD_EXECUTABLE(runTrieUnitTests Test_Trie.cpp main.cpp)
 
-TARGET_LINK_LIBRARIES(runUnitTests
+TARGET_LINK_LIBRARIES(runTrieUnitTests
     PRIVATE --coverage
     Trie
     libgtest
     libgmock
 )
 
-add_test(TrieUnitTests runUnitTests)
+add_test(TrieUnitTests runTrieUnitTests)
