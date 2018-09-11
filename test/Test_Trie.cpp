@@ -7,21 +7,21 @@
 #include "../include/Trie.h"
 
 /* Assert that a Default Trie Constructs without error. */
-TEST(TrieTest, TestDefaultConstruction) {
+TEST(TrieTest, DefaultConstruction) {
   Trie dict;
 
 	ASSERT_TRUE(true);
 }
 
 /* Assert that a normal Trie Constructs without error. */
-TEST(TrieTest, TestNormalConstruction) {
+TEST(TrieTest, NormalConstruction) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
 	ASSERT_TRUE(true);
 }
 
-TEST(TrieTest, TestInitializerListConstruction) {
+TEST(TrieTest, InitializerListConstruction) {
   Trie dict = { "char", "chai", "chair", "ant" };
 
 	ASSERT_TRUE(dict.find("char"));
@@ -56,7 +56,7 @@ TEST(TrieTest, DuplicateDictionary) {
 }
 
 /* Test a Valid Word Exists. */
-TEST(TrieTest, ValidWordHasEntry) {
+TEST(TrieTest, ValidWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
@@ -64,7 +64,7 @@ TEST(TrieTest, ValidWordHasEntry) {
 }
 
 /* Test an Invalid Word Exists */
-TEST(TrieTest, InvalidWordHasEntry) {
+TEST(TrieTest, InvalidWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
@@ -72,7 +72,7 @@ TEST(TrieTest, InvalidWordHasEntry) {
 }
 
 /* Test an empty Word Exists */
-TEST(TrieTest, EmptyWordfind) {
+TEST(TrieTest, EmptyWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
@@ -104,7 +104,7 @@ TEST(TrieTest, EmptyPrefixHasPrefix) {
 }
 
 /* Test Inserting a word into an existing Trie. */
-TEST(TrieTest, ExistingTrieInsertWord) {
+TEST(TrieTest, ExistingTrieInsert) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
   Trie dict(words);
 
