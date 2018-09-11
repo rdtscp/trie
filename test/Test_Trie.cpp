@@ -225,10 +225,10 @@ TEST(TrieTest, NullTerminatorEntries) {
 }
 
 // The fixture for testing class Project1. From google test primer.
-class Test_trie : public ::testing::Test {
+class Test_Trie : public ::testing::Test {
 	protected:
 
-		Test_trie() {
+		Test_Trie() {
 			// You can do set-up work for each test here.
 		}
 
