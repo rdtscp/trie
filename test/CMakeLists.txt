@@ -43,9 +43,24 @@ include_directories("${source_dir}/googletest/include")
 
 ADD_EXECUTABLE(runUnitTests Test_Trie.cpp main.cpp)
 
-TARGET_LINK_LIBRARIES(runUnitTests
-    Trie
-    libgtest
-    libgmock
-)
+
+
+SET(COVERAGE OFF CACHE BOOL "Coverage")
+if (COVERAGE)
+    target_compile_options(runUnitTests PRIVATE --coverage)
+    TARGET_LINK_LIBRARIES(runUnitTests
+        PRIVATE --coverage
+        Trie
+        libgtest
+        libgmock
+    )
+else()
+    TARGET_LINK_LIBRARIES(runUnitTests
+        Trie
+        libgtest
+        libgmock
+    )
+endif()
+
+
 add_test(UnitTests runUnitTests)
