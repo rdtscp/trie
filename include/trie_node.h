@@ -5,18 +5,18 @@
 #include <string>
 #include <vector>
 
-class TrieNode {
+class trie_node {
 
   public:
 
     /* Takes in a string representing the remaining portion of the word, and creates a structure accordingly. */
-    TrieNode(std::string word);
+    trie_node(std::string word);
 
     /* Copy Constructor */
-    TrieNode(const TrieNode& copy);
+    trie_node(const trie_node& copy);
 
     /* Assignment Operator */
-    TrieNode& operator=(TrieNode rhs);
+    trie_node& operator=(trie_node rhs);
 
     /* Used recursively to determine if a string exists within the parent Trie. */
     bool find(std::string query);
@@ -32,7 +32,7 @@ class TrieNode {
     /* Marks if this trie node is an entry in the Trie. */
     bool isEntry = false;
     /* Contains all possible extensions of the word prefix up until this point. */
-    std::map<char, std::unique_ptr<TrieNode>> children;
+    std::map<char, std::unique_ptr<trie_node>> children;
 
     /* Helper for safely returning the tail of a string. */
     std::string getTail(std::string word);

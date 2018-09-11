@@ -6,8 +6,7 @@ include_directories("${source_dir}/googletest/include")
 ADD_EXECUTABLE(runTrieUnitTests Test_Trie.cpp main.cpp)
 
 TARGET_LINK_LIBRARIES(runTrieUnitTests
-    PRIVATE --coverage
-    Trie
+    trie
     libgtest
     libgmock
 )

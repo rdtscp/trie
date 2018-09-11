@@ -4,35 +4,35 @@
 
 #include "gtest/gtest.h"
 
-#include "../include/Trie.h"
+#include "../include/trie.h"
 
 using namespace ads;
 
-/* Assert that a Default Trie Constructs without error. */
-TEST(TrieTest, DefaultConstruction) {
-  Trie dict;
+/* Assert that a Default trie Constructs without error. */
+TEST(trieTest, DefaultConstruction) {
+  trie dict;
 
 	ASSERT_TRUE(true);
 }
 
-/* Assert that a normal Trie Constructs without error. */
-TEST(TrieTest, NormalConstruction) {
+/* Assert that a normal trie Constructs without error. */
+TEST(trieTest, NormalConstruction) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(true);
 }
 
-TEST(TrieTest, InitializerListConstruction) {
-  Trie dict = { "char", "chai", "chair", "ant" };
+TEST(trieTest, InitializerListConstruction) {
+  trie dict = { "char", "chai", "chair", "ant" };
 
 	ASSERT_TRUE(dict.find("char"));
 }
 
 /* Test that copying/assigning to itself works. */
-TEST(TrieTest, CopyToSelf) {
+TEST(trieTest, CopyToSelf) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.find("char"));
 
@@ -41,74 +41,74 @@ TEST(TrieTest, CopyToSelf) {
 	ASSERT_TRUE(dict.find("char"));
 }
 
-/* Test Constructing an empty Trie */
-TEST(TrieTest, EmptyDictionary) {
+/* Test Constructing an empty trie */
+TEST(trieTest, EmptyDictionary) {
 	std::vector<std::string> words = { };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(true);
 }
 
 /* Test Constructing a Dictionary with a Duplicate Word */
-TEST(TrieTest, DuplicateDictionary) {
+TEST(trieTest, DuplicateDictionary) {
 	std::vector<std::string> words = { "test", "test" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.find("test"));
 }
 
 /* Test a Valid Word Exists. */
-TEST(TrieTest, ValidWordFind) {
+TEST(trieTest, ValidWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.find("char"));
 }
 
 /* Test an Invalid Word Exists */
-TEST(TrieTest, InvalidWordFind) {
+TEST(trieTest, InvalidWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_FALSE(dict.find("bli"));
 }
 
 /* Test an empty Word Exists */
-TEST(TrieTest, EmptyWordFind) {
+TEST(trieTest, EmptyWordFind) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.find(""));
 }
 
 /* Test a Valid Prefix Exists */
-TEST(TrieTest, ValidPrefixHasPrefix) {
+TEST(trieTest, ValidPrefixHasPrefix) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.has_prefix("cha"));
 }
 
 /* Test an Invalid Prefix Exists */
-TEST(TrieTest, InvalidPrefixHasPrefix) {
+TEST(trieTest, InvalidPrefixHasPrefix) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_FALSE(dict.has_prefix("bli"));
 }
 
 /* Test an empty Prefix Exists */
-TEST(TrieTest, EmptyPrefixHasPrefix) {
+TEST(trieTest, EmptyPrefixHasPrefix) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_TRUE(dict.has_prefix(""));
 }
 
-/* Test Inserting a word into an existing Trie. */
-TEST(TrieTest, ExistingTrieInsert) {
+/* Test Inserting a word into an existing trie. */
+TEST(trieTest, ExistingtrieInsert) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict(words);
+  trie dict(words);
 
 	ASSERT_FALSE(dict.find("table"));
 
@@ -117,9 +117,9 @@ TEST(TrieTest, ExistingTrieInsert) {
 	ASSERT_TRUE(dict.find("table"));
 }
 
-/* Test Inserting into a Default Constructed Trie. */
-TEST(TrieTest, InsertDefaultConstructed) {
-	Trie dict;
+/* Test Inserting into a Default Constructed trie. */
+TEST(trieTest, InsertDefaultConstructed) {
+	trie dict;
 
 	ASSERT_FALSE(dict.find("table"));
 
@@ -129,64 +129,64 @@ TEST(TrieTest, InsertDefaultConstructed) {
 }
 
 /* Test Copy Constructor Works */
-TEST(TrieTest, CopyConstructor) {
+TEST(trieTest, CopyConstructor) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-  Trie dict1(words);
+  trie dict1(words);
 
 	ASSERT_TRUE(dict1.find("char"));
 
-	Trie dict2(dict1);
+	trie dict2(dict1);
 
 	ASSERT_TRUE(dict1.find("char"));
 	ASSERT_TRUE(dict2.find("char"));
 }
 
 /* Test =operator normal usage. */
-TEST(TrieTest, EqualOperatorCopiesNormal) {
+TEST(trieTest, EqualOperatorCopiesNormal) {
 	std::vector<std::string> words = { "char" };
-  Trie dict1(words);
+  trie dict1(words);
 
 	ASSERT_TRUE(dict1.find("char"));
 
-	Trie dict2 = dict1;
+	trie dict2 = dict1;
 
 	ASSERT_TRUE(dict1.find("char"));
 	ASSERT_TRUE(dict2.find("char"));
 } 
 
 /* Test =operator edge cases. */
-TEST(TrieTest, EqualOperatorCopiesEdge) {
+TEST(trieTest, EqualOperatorCopiesEdge) {
 	std::vector<std::string> words = {};
-  Trie defaultDict;
-  Trie emptyDict(words);
+  trie defaultDict;
+  trie emptyDict(words);
 
 	ASSERT_FALSE(defaultDict.find("word"));
 	ASSERT_FALSE(emptyDict.find("word"));
 
-	Trie testDict1 = defaultDict;
-	Trie testDict2 = emptyDict;
+	trie testDict1 = defaultDict;
+	trie testDict2 = emptyDict;
 
 	ASSERT_FALSE(testDict1.find("word"));
 	ASSERT_FALSE(testDict2.find("word"));
 } 
 
 /* Test when Inefficient Construction is Used. */
-TEST(TrieTest, InefficentConstruction) {
+TEST(trieTest, InefficentConstruction) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-	Trie dict = Trie(words);
+	trie dict = trie(words);
 
 	ASSERT_TRUE(dict.find("char"));
 }
 
 /* Test that inserting to a Copy doesn't effect the original. */
-TEST(TrieTest, InsertWordToCopy) {
+TEST(trieTest, InsertWordToCopy) {
 	std::vector<std::string> words = { "char", "chai", "chair", "ant" };
-	Trie dictOne = Trie(words);
+	trie dictOne = trie(words);
 
 	ASSERT_TRUE(dictOne.find("char"));
 
-	Trie dictTwo   = dictOne;
-	Trie dictThree(dictTwo);
+	trie dictTwo   = dictOne;
+	trie dictThree(dictTwo);
 
 	ASSERT_TRUE(dictTwo.find("char"));
 	ASSERT_TRUE(dictThree.find("char"));
@@ -199,8 +199,8 @@ TEST(TrieTest, InsertWordToCopy) {
 }
 
 /* Test that every word inserted matches its prefixes. */
-TEST(TrieTest, InsertedWordsHasPrefix) {
-	Trie dict;
+TEST(trieTest, InsertedWordsHasPrefix) {
+	trie dict;
 	std::string test = "VeryLongStringWhichHasLotsOfPrefixes!";
 	dict.insert(test);
 
@@ -210,25 +210,25 @@ TEST(TrieTest, InsertedWordsHasPrefix) {
 	}
 }
 
-TEST(TrieTest, NewLineEntries) {
-	Trie dict = { "new\nline" };
+TEST(trieTest, NewLineEntries) {
+	trie dict = { "new\nline" };
 
 	ASSERT_TRUE(dict.find("new\nline"));
 	ASSERT_TRUE(dict.has_prefix("new\n"));
 }
 
-TEST(TrieTest, NullTerminatorEntries) {
-	Trie dict = { "null\0terminator" };
+TEST(trieTest, NullTerminatorEntries) {
+	trie dict = { "null\0terminator" };
 
 	ASSERT_TRUE(dict.find("null\0terminator"));
 	ASSERT_TRUE(dict.has_prefix("null\0"));
 }
 
 // The fixture for testing class Project1. From google test primer.
-class Test_Trie : public ::testing::Test {
+class Test_trie : public ::testing::Test {
 	protected:
 
-		Test_Trie() {
+		Test_trie() {
 			// You can do set-up work for each test here.
 		}
 

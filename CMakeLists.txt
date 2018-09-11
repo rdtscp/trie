@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 3.9.2)
 set (CMAKE_CXX_STANDARD 17)
 
-project(Trie)
+project(trie)
 
 IF(CMAKE_BUILD_TYPE MATCHES Release)
   message(" --- Building in Release Mode ---")
-  add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
+  add_library(trie SHARED src/trie.cpp src/trie_node.cpp)
   install(
-    TARGETS Trie
+    TARGETS trie
     DESTINATION lib
   )
   install(
-    FILES include/trie include/Trie.h include/TrieNode.h
+    FILES include/trie include/trie.h include/trie_node.h
     DESTINATION include
   )
 ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
@@ -62,13 +62,13 @@ IF(CMAKE_BUILD_TYPE MATCHES Debug)
     ENDIF(NOT GTEST_INSTALLED MATCHES TRUE)
     
     
-    add_library(Trie SHARED src/Trie.cpp src/TrieNode.cpp)
+    add_library(trie SHARED src/trie.cpp src/trie_node.cpp)
     install(
-      TARGETS Trie
+      TARGETS trie
       DESTINATION lib
       )
   install(
-    FILES include/trie include/Trie.h include/TrieNode.h
+    FILES include/trie include/trie.h include/trie_node.h
     DESTINATION include
   )
   enable_testing()

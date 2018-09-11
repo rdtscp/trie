@@ -6,29 +6,29 @@
 #include <string>
 #include <map>
 
-#include "TrieNode.h"
+#include "trie_node.h"
 
 
 namespace ads {
   
-  class Trie {
+  class trie {
 
     public:
 
       /* Constructs an Empty Trie */
-      Trie();
+      trie();
 
       /* Takes in a vector of strings, and constructs a Trie. */
-      Trie(std::vector<std::string> dictionary);
+      trie(std::vector<std::string> dictionary);
 
       /* Initialiser-List Constructor */
-      Trie(std::initializer_list<std::string> dictionary);
+      trie(std::initializer_list<std::string> dictionary);
 
       /* Copy Constructor */
-      Trie(const Trie& copy);
+      trie(const trie& copy);
 
       /* Assignment Operator */
-      Trie& operator=(Trie rhs);
+      trie& operator=(trie rhs);
 
       /* Queries the Trie to see if a string exists. */
       bool find(std::string query);
@@ -42,7 +42,7 @@ namespace ads {
     private:
     
       /* Contains all the words in the dictionary starting from their first character. */
-      std::map<char, std::unique_ptr<TrieNode>> dictionary;
+      std::map<char, std::unique_ptr<trie_node>> dictionary;
 
       /* Helper for safely returning the tail of a string. */
       std::string getTail(std::string word);

@@ -3,41 +3,41 @@
 #include <string>
 #include <map>
 
-#include "../include/Trie.h"
+#include "../include/trie.h"
 
 using namespace ads;
 
-Trie::Trie() {}
+trie::trie() {}
 
-Trie::Trie(std::vector<std::string> dictionary) {
+trie::trie(std::vector<std::string> dictionary) {
   for (std::string word: dictionary) {
     insert(word);
   }
 }
 
-Trie::Trie(std::initializer_list<std::string> dictionary) {
+trie::trie(std::initializer_list<std::string> dictionary) {
   for (std::string word: dictionary) {
     insert(word);
   }
 }
 
-Trie::Trie(const Trie& copy) {
+trie::trie(const trie& copy) {
   for (const auto& dictEntry: copy.dictionary) {
-    dictionary[dictEntry.first] = std::unique_ptr<TrieNode>(new TrieNode(*dictEntry.second));
+    dictionary[dictEntry.first] = std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
   }
 }
 
-Trie& Trie::operator=(Trie rhs) {
+trie& trie::operator=(trie rhs) {
   if (&rhs == this) {
     return *this;
   }
   for (const auto& dictEntry: rhs.dictionary) {
-    dictionary[dictEntry.first] = std::unique_ptr<TrieNode>(new TrieNode(*dictEntry.second));
+    dictionary[dictEntry.first] = std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
   }
   return *this;
 }
 
-bool Trie::find(std::string word) {
+bool trie::find(std::string word) {
   if (word == "")
     return true;
 
@@ -49,7 +49,7 @@ bool Trie::find(std::string word) {
   return false;
 }
 
-bool Trie::has_prefix(std::string word) {
+bool trie::has_prefix(std::string word) {
   if (word == "")
     return true;
 
@@ -61,7 +61,7 @@ bool Trie::has_prefix(std::string word) {
   return false;
 }
 
-void Trie::insert(std::string word) {
+void trie::insert(std::string word) {
   if (word == "")
     return;
   else {
@@ -69,14 +69,14 @@ void Trie::insert(std::string word) {
     std::string tail = getTail(word);
 
     if (dictionary.find(head) == dictionary.end())
-      dictionary[head] = std::unique_ptr<TrieNode>(new TrieNode(tail));
+      dictionary[head] = std::unique_ptr<trie_node>(new trie_node(tail));
     else
       dictionary[head]->insert(tail);
   }
 }
 
 /* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
-std::string Trie::getTail(std::string word) {
+std::string trie::getTail(std::string word) {
   std::string output = "";
   if (word.length() > 0)
     output = word.substr(1, word.length() - 1);

@@ -4,26 +4,26 @@
 
 #include "../include/Trie.h"
 
-TrieNode::TrieNode(std::string word) : children() {
+trie_node::trie_node(std::string word) : children() {
   insert(word);
 }
 
-TrieNode::TrieNode(const TrieNode& copy) {
+trie_node::trie_node(const trie_node& copy) {
   isEntry = copy.isEntry;
   for (const auto& subNode: copy.children) {
-    children[subNode.first] = std::unique_ptr<TrieNode>(new TrieNode(*subNode.second));
+    children[subNode.first] = std::unique_ptr<trie_node>(new trie_node(*subNode.second));
   }
 }
 
-TrieNode& TrieNode::operator=(TrieNode rhs) {
+trie_node& trie_node::operator=(trie_node rhs) {
   isEntry = rhs.isEntry;
   for (const auto& subNode: rhs.children) {
-    children[subNode.first] = std::unique_ptr<TrieNode>(new TrieNode(*subNode.second));
+    children[subNode.first] = std::unique_ptr<trie_node>(new trie_node(*subNode.second));
   }
   return *this;
 }
 
-bool TrieNode::find(std::string word) {
+bool trie_node::find(std::string word) {
   if (word == "")
     return isEntry;
 
@@ -35,7 +35,7 @@ bool TrieNode::find(std::string word) {
   return false;
 }
 
-bool TrieNode::has_prefix(std::string prefix) {
+bool trie_node::has_prefix(std::string prefix) {
   if (prefix == "")
     return true;
 
@@ -47,7 +47,7 @@ bool TrieNode::has_prefix(std::string prefix) {
   return false;
 }
 
-void TrieNode::insert(std::string word) {
+void trie_node::insert(std::string word) {
   if (word == "")
     isEntry = true;
   else {
@@ -55,13 +55,13 @@ void TrieNode::insert(std::string word) {
     std::string tail = getTail(word);
 
     if (children.find(head) == children.end())
-      children[head] = std::unique_ptr<TrieNode>(new TrieNode(tail));
+      children[head] = std::unique_ptr<trie_node>(new trie_node(tail));
     else
       children[head]->insert(tail);
   }
 }
 
-std::string TrieNode::getTail(std::string word) {
+std::string trie_node::getTail(std::string word) {
   std::string output = "";
   if (word.length() > 0)
     output = word.substr(1, word.length() - 1);
