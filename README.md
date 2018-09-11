@@ -1,15 +1,15 @@
-# Trie
-[![Build Status](https://travis-ci.com/acwilson96/Trie.svg?branch=master)](https://travis-ci.com/acwilson96/Trie)
+# trie
+[![Build Status](https://travis-ci.com/acwilson96/trie.svg?branch=master)](https://travis-ci.com/acwilson96/trie)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 Trie implementation in C++. Built using CMake and Google Test. 
 
 # Download
 ```
-git clone https://github.com/acwilson96/Trie
-cd Trie
+git clone https://github.com/acwilson96/trie
+cd trie
 ```
-The following should be run from within the "Trie" directory.
+The following should be run from within the "trie" directory.
 # Release Install
 ```
 mkdir build
