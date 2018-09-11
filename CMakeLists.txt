@@ -60,13 +60,12 @@ IF(CMAKE_BUILD_TYPE MATCHES Debug)
       "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
       )
     ENDIF(NOT GTEST_INSTALLED MATCHES TRUE)
-    
-    
+
   add_library(trie SHARED src/trie.cpp src/trie_node.cpp)
   install(
     TARGETS trie
     DESTINATION lib
-    )
+  )
   install(
     FILES include/trie include/trie.h include/trie_node.h
     DESTINATION include
