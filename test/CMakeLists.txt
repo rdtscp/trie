@@ -48,5 +48,5 @@ TARGET_LINK_LIBRARIES(runUnitTests
     libgtest
     libgmock
 )
-
-gtest_discover_tests(runUnitTests)
+add_test(runUnitTests)
+# gtest_discover_tests(runUnitTests)
