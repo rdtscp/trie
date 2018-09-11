@@ -9,10 +9,13 @@ addons:
     sources:
       - llvm-toolchain-trusty-5.0
       - george-edison55-precise-backports
+      - ubuntu-toolchain-r-test
     packages:
       - clang-5.0
       - cmake-data
-      - cmake      
+      - cmake
+      - g++-6
+      
 
 matrix:
   include:
