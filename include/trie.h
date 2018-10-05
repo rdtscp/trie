@@ -19,25 +19,25 @@ namespace ads {
       trie();
 
       /* Takes in a vector of strings, and constructs a Trie. */
-      trie(std::vector<std::string> dictionary);
+      trie(const std::vector<std::string>& dictionary);
 
       /* Initialiser-List Constructor */
-      trie(std::initializer_list<std::string> dictionary);
+      trie(const std::initializer_list<std::string>& dictionary);
 
       /* Copy Constructor */
       trie(const trie& copy);
 
       /* Assignment Operator */
-      trie& operator=(trie rhs);
+      trie& operator=(const trie& rhs);
 
       /* Queries the Trie to see if a string exists. */
-      bool find(std::string query);
+      bool find(const std::string& query);
 
       /* Queries the Trie to see if a prefix of a string exists. */
-      bool has_prefix(std::string prefix);
+      bool has_prefix(const std::string& prefix);
 
       /* Inserts a word into the Trie. */
-      void insert(std::string word);
+      void insert(const std::string& word);
 
     private:
     
