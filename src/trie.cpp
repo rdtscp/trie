@@ -9,13 +9,13 @@ using namespace ads;
 
 trie::trie() {}
 
-trie::trie(std::vector<std::string> dictionary) {
+trie::trie(const std::vector<std::string>& dictionary) {
   for (std::string word: dictionary) {
     insert(word);
   }
 }
 
-trie::trie(std::initializer_list<std::string> dictionary) {
+trie::trie(const std::initializer_list<std::string>& dictionary) {
   for (std::string word: dictionary) {
     insert(word);
   }
@@ -27,7 +27,7 @@ trie::trie(const trie& copy) {
   }
 }
 
-trie& trie::operator=(trie rhs) {
+trie& trie::operator=(const trie& rhs) {
   if (&rhs == this) {
     return *this;
   }
@@ -37,7 +37,7 @@ trie& trie::operator=(trie rhs) {
   return *this;
 }
 
-bool trie::find(std::string word) {
+bool trie::find(const std::string& word) {
   if (word == "")
     return true;
 
@@ -49,7 +49,7 @@ bool trie::find(std::string word) {
   return false;
 }
 
-bool trie::has_prefix(std::string word) {
+bool trie::has_prefix(const std::string& word) {
   if (word == "")
     return true;
 
@@ -61,7 +61,7 @@ bool trie::has_prefix(std::string word) {
   return false;
 }
 
-void trie::insert(std::string word) {
+void trie::insert(const std::string& word) {
   if (word == "")
     return;
   else {
@@ -76,7 +76,7 @@ void trie::insert(std::string word) {
 }
 
 /* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
-std::string trie::getTail(std::string word) {
+std::string trie::getTail(const std::string& word) {
   std::string output = "";
   if (word.length() > 0)
     output = word.substr(1, word.length() - 1);
