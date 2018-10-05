@@ -30,10 +30,11 @@ class trie_node {
     /* Used recursively to insert a word into the parent Trie. */
     void insert(const std::string& word);
 
-  private:
-
     /* Marks if this trie node is an entry in the Trie. */
     bool isEntry = false;
+
+  private:
+
     /* Contains all possible extensions of the word prefix up until this point. */
     std::map<char, std::unique_ptr<trie_node>> children;
 
