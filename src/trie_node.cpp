@@ -47,6 +47,38 @@ bool trie_node::has_prefix(const std::string& prefix) {
   return false;
 }
 
+std::vector<std::string> trie_node::resolve(const std::string& prefix) {
+  std::vector<std::string> output = {};
+
+  if (prefix == "") {
+    for (const auto& child: children) {
+      if (child.second->isEntry)
+        output.push_back(child.first+std::string());
+
+      std::vector<std::string> extensions = child.second->resolve("");
+      for (std::string& extension: extensions)
+        extension = child.first + extension;
+      output.insert(output.end(), extensions.begin(), extensions.end());
+    }
+  }
+  else {
+    const char        head = prefix[0];
+    const std::string tail = getTail(prefix);
+
+    if (children.find(head) != children.end()) {
+      if (tail == "" && children[head]->isEntry)
+        output.push_back(head + std::string());
+    
+      std::vector<std::string> extensions = children[head]->resolve(tail);
+      for (std::string& extension: extensions)
+        extension = head + extension;
+      output.insert(output.end(), extensions.begin(), extensions.end());
+    }
+  }
+
+  return output;
+}
+
 void trie_node::insert(const std::string& word) {
   if (word == "")
     isEntry = true;

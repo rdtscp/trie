@@ -61,6 +61,38 @@ bool trie::has_prefix(const std::string& word) {
   return false;
 }
 
+std::vector<std::string> trie::resolve(const std::string& prefix) {
+  std::vector<std::string> output = {};
+
+  if (prefix == "") {
+    for (const auto& word: dictionary) {
+      if (word.second->isEntry)
+        output.push_back(word.first+std::string());
+
+      std::vector<std::string> extensions = word.second->resolve("");
+      for (std::string& extension: extensions)
+        extension = word.first + extension;
+      output.insert(output.end(), extensions.begin(), extensions.end());
+    }
+  }
+  else {
+    const char        head = prefix[0];
+    const std::string tail = getTail(prefix);
+    if (dictionary.find(head) != dictionary.end()) {
+      if (tail == "" && dictionary[head]->isEntry)
+        output.push_back(head + std::string());
+
+      std::vector<std::string> extensions = dictionary[head]->resolve(tail);
+      for (std::string& extension: extensions)
+        extension = head + extension;
+      output.insert(output.end(), extensions.begin(), extensions.end());
+    }
+  }
+
+  return output;
+}
+
+
 void trie::insert(const std::string& word) {
   if (word == "")
     return;
