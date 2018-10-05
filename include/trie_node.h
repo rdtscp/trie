@@ -10,22 +10,22 @@ class trie_node {
   public:
 
     /* Takes in a string representing the remaining portion of the word, and creates a structure accordingly. */
-    trie_node(std::string word);
+    trie_node(const std::string& word);
 
     /* Copy Constructor */
     trie_node(const trie_node& copy);
 
     /* Assignment Operator */
-    trie_node& operator=(trie_node rhs);
+    trie_node& operator=(const trie_node& rhs);
 
     /* Used recursively to determine if a string exists within the parent Trie. */
-    bool find(std::string query);
+    bool find(const std::string& query);
 
     /* Used recursively to determine if a prefix of a string exists within the parent Trie. */
-    bool has_prefix(std::string prefix);
+    bool has_prefix(const std::string& prefix);
 
     /* Used recursively to insert a word into the parent Trie. */
-    void insert(std::string word);
+    void insert(const std::string& word);
 
   private:
 
@@ -35,7 +35,7 @@ class trie_node {
     std::map<char, std::unique_ptr<trie_node>> children;
 
     /* Helper for safely returning the tail of a string. */
-    std::string getTail(std::string word);
+    std::string getTail(const std::string& word);
 
 };
 
