@@ -24,6 +24,9 @@ class trie_node {
     /* Used recursively to determine if a prefix of a string exists within the parent Trie. */
     bool has_prefix(const std::string& prefix);
 
+    /* Get all possible extensions of a prefix. If an invalid prefix is supplied, an empty vector is returned. */
+    std::vector<std::string> resolve(const std::string& prefix);
+
     /* Used recursively to insert a word into the parent Trie. */
     void insert(const std::string& word);
 

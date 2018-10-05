@@ -36,6 +36,9 @@ namespace ads {
       /* Queries the Trie to see if a prefix of a string exists. */
       bool has_prefix(const std::string& prefix);
 
+      /* Get all possible extensions of a prefix. If an invalid prefix is supplied, an empty vector is returned. */
+      std::vector<std::string> resolve(const std::string& prefix);
+
       /* Inserts a word into the Trie. */
       void insert(const std::string& word);
 
