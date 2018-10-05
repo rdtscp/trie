@@ -224,6 +224,31 @@ TEST(TrieTest, NullTerminatorEntries) {
 	ASSERT_TRUE(dict.has_prefix("null\0"));
 }
 
+TEST(TrieTest, GetExtensionTest) {
+	trie dict =  { "chairs" };
+
+	const std::vector<std::string> extensions = dict.resolve("chai");
+	ASSERT_EQ(extensions[0], "chairs");
+	
+}
+
+TEST(TrieTest, GetExtensionsTest) {
+	trie dict =  { "c", "cha", "chai", "chair", "chairs", "champ", "foo", "bar", "baz" };
+
+	const std::vector<std::string> actual   = dict.resolve("c");
+	const std::vector<std::string> expected = { "c", "cha", "chai", "chair", "chairs", "champ" };
+		
+	for (std::string res: actual) {
+		bool valid = false;
+		for (std::string ans: expected)
+			 if (res == ans)
+			 	valid = true;
+		ASSERT_TRUE(valid);
+	}
+
+	ASSERT_EQ(actual.size(), expected.size());
+}
+
 // The fixture for testing class Project1. From google test primer.
 class Test_Trie : public ::testing::Test {
 	protected:
