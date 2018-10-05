@@ -41,8 +41,8 @@ bool trie::find(const std::string& word) {
   if (word == "")
     return true;
 
-  char        head = word[0];
-  std::string tail = getTail(word);
+  const char        head = word[0];
+  const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
     return dictionary[head]->find(tail);
 
@@ -53,8 +53,8 @@ bool trie::has_prefix(const std::string& word) {
   if (word == "")
     return true;
 
-  char        head = word[0];
-  std::string tail = getTail(word);
+  const char        head = word[0];
+  const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
     return dictionary[head]->has_prefix(tail);
 
@@ -65,8 +65,8 @@ void trie::insert(const std::string& word) {
   if (word == "")
     return;
   else {
-    char        head = word[0];
-    std::string tail = getTail(word);
+    const char        head = word[0];
+    const std::string tail = getTail(word);
 
     if (dictionary.find(head) == dictionary.end())
       dictionary[head] = std::unique_ptr<trie_node>(new trie_node(tail));
