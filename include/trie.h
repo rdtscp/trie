@@ -45,7 +45,7 @@ namespace ads {
       std::map<char, std::unique_ptr<trie_node>> dictionary;
 
       /* Helper for safely returning the tail of a string. */
-      std::string getTail(std::string word);
+      std::string getTail(const std::string& word);
 
   };
 
