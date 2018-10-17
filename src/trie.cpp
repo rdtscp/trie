@@ -44,7 +44,7 @@ bool trie::find(const std::string& word) const {
   const char        head = word[0];
   const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
-    return dictionary[head]->find(tail);
+    return dictionary.find(head)->second->find(tail);
 
   return false;
 }
@@ -56,7 +56,7 @@ bool trie::has_prefix(const std::string& word) const {
   const char        head = word[0];
   const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
-    return dictionary[head]->has_prefix(tail);
+    return dictionary.find(head)->second->has_prefix(tail);
 
   return false;
 }
@@ -79,10 +79,10 @@ std::vector<std::string> trie::resolve(const std::string& prefix) const {
     const char        head = prefix[0];
     const std::string tail = getTail(prefix);
     if (dictionary.find(head) != dictionary.end()) {
-      if (tail == "" && dictionary[head]->isEntry)
+      if (tail == "" && dictionary.find(head)->second->isEntry)
         output.push_back(head + std::string());
 
-      std::vector<std::string> extensions = dictionary[head]->resolve(tail);
+      std::vector<std::string> extensions = dictionary.find(head)->second->resolve(tail);
       for (std::string& extension: extensions)
         extension = head + extension;
       output.insert(output.end(), extensions.begin(), extensions.end());
