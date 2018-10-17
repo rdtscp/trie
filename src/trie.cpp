@@ -37,7 +37,7 @@ trie& trie::operator=(const trie& rhs) {
   return *this;
 }
 
-bool trie::find(const std::string& word) {
+bool trie::find(const std::string& word) const {
   if (word == "")
     return true;
 
@@ -49,7 +49,7 @@ bool trie::find(const std::string& word) {
   return false;
 }
 
-bool trie::has_prefix(const std::string& word) {
+bool trie::has_prefix(const std::string& word) const {
   if (word == "")
     return true;
 
@@ -61,7 +61,7 @@ bool trie::has_prefix(const std::string& word) {
   return false;
 }
 
-std::vector<std::string> trie::resolve(const std::string& prefix) {
+std::vector<std::string> trie::resolve(const std::string& prefix) const {
   std::vector<std::string> output = {};
 
   if (prefix == "") {
@@ -108,7 +108,7 @@ void trie::insert(const std::string& word) {
 }
 
 /* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
-std::string trie::getTail(const std::string& word) {
+std::string trie::getTail(const std::string& word) const {
   std::string output = "";
   if (word.length() > 0)
     output = word.substr(1, word.length() - 1);

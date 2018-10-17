@@ -31,13 +31,13 @@ namespace ads {
       trie& operator=(const trie& rhs);
 
       /* Queries the Trie to see if a string exists. */
-      bool find(const std::string& query);
+      bool find(const std::string& query) const;
 
       /* Queries the Trie to see if a prefix of a string exists. */
-      bool has_prefix(const std::string& prefix);
+      bool has_prefix(const std::string& prefix) const;
 
       /* Get all possible extensions of a prefix. If an invalid prefix is supplied, an empty vector is returned. */
-      std::vector<std::string> resolve(const std::string& prefix);
+      std::vector<std::string> resolve(const std::string& prefix) const;
 
       /* Inserts a word into the Trie. */
       void insert(const std::string& word);
@@ -48,7 +48,7 @@ namespace ads {
       std::map<char, std::unique_ptr<trie_node>> dictionary;
 
       /* Helper for safely returning the tail of a string. */
-      std::string getTail(const std::string& word);
+      std::string getTail(const std::string& word) const;
 
   };
 
