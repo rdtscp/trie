@@ -1,5 +1,6 @@
 # trie
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1cdbfee5afbb4a2689bd64b018158e34)](https://app.codacy.com/app/rdtscp/trie?utm_source=github.com&utm_medium=referral&utm_content=rdtscp/trie&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/rdtscp/trie.svg?branch=master)](https://travis-ci.com/rdtscp/trie)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
