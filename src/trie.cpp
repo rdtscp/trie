@@ -1,7 +1,7 @@
-#include <memory>
-#include <vector>
-#include <string>
 #include <map>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "../include/trie.h"
 
@@ -9,39 +9,41 @@ using namespace ads;
 
 trie::trie() {}
 
-trie::trie(const std::vector<std::string>& dictionary) {
-  for (std::string word: dictionary) {
+trie::trie(const std::vector<std::string> &dictionary) {
+  for (std::string word : dictionary) {
     insert(word);
   }
 }
 
-trie::trie(const std::initializer_list<std::string>& dictionary) {
-  for (std::string word: dictionary) {
+trie::trie(const std::initializer_list<std::string> &dictionary) {
+  for (std::string word : dictionary) {
     insert(word);
   }
 }
 
-trie::trie(const trie& copy) {
-  for (const auto& dictEntry: copy.dictionary) {
-    dictionary[dictEntry.first] = std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
+trie::trie(const trie &copy) {
+  for (const auto &dictEntry : copy.dictionary) {
+    dictionary[dictEntry.first] =
+        std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
   }
 }
 
-trie& trie::operator=(const trie& rhs) {
+trie &trie::operator=(const trie &rhs) {
   if (&rhs == this) {
     return *this;
   }
-  for (const auto& dictEntry: rhs.dictionary) {
-    dictionary[dictEntry.first] = std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
+  for (const auto &dictEntry : rhs.dictionary) {
+    dictionary[dictEntry.first] =
+        std::unique_ptr<trie_node>(new trie_node(*dictEntry.second));
   }
   return *this;
 }
 
-bool trie::find(const std::string& word) const {
+bool trie::find(const std::string &word) const {
   if (word == "")
     return true;
 
-  const char        head = word[0];
+  const char head = word[0];
   const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
     return dictionary.find(head)->second->find(tail);
@@ -49,11 +51,11 @@ bool trie::find(const std::string& word) const {
   return false;
 }
 
-bool trie::has_prefix(const std::string& word) const {
+bool trie::has_prefix(const std::string &word) const {
   if (word == "")
     return true;
 
-  const char        head = word[0];
+  const char head = word[0];
   const std::string tail = getTail(word);
   if (dictionary.find(head) != dictionary.end())
     return dictionary.find(head)->second->has_prefix(tail);
@@ -61,29 +63,29 @@ bool trie::has_prefix(const std::string& word) const {
   return false;
 }
 
-std::vector<std::string> trie::resolve(const std::string& prefix) const {
+std::vector<std::string> trie::resolve(const std::string &prefix) const {
   std::vector<std::string> output = {};
 
   if (prefix == "") {
-    for (const auto& word: dictionary) {
+    for (const auto &word : dictionary) {
       if (word.second->isEntry)
-        output.push_back(word.first+std::string());
+        output.push_back(word.first + std::string());
 
       std::vector<std::string> extensions = word.second->resolve("");
-      for (std::string& extension: extensions)
+      for (std::string &extension : extensions)
         extension = word.first + extension;
       output.insert(output.end(), extensions.begin(), extensions.end());
     }
-  }
-  else {
-    const char        head = prefix[0];
+  } else {
+    const char head = prefix[0];
     const std::string tail = getTail(prefix);
     if (dictionary.find(head) != dictionary.end()) {
       if (tail == "" && dictionary.find(head)->second->isEntry)
         output.push_back(head + std::string());
 
-      std::vector<std::string> extensions = dictionary.find(head)->second->resolve(tail);
-      for (std::string& extension: extensions)
+      std::vector<std::string> extensions =
+          dictionary.find(head)->second->resolve(tail);
+      for (std::string &extension : extensions)
         extension = head + extension;
       output.insert(output.end(), extensions.begin(), extensions.end());
     }
@@ -92,12 +94,11 @@ std::vector<std::string> trie::resolve(const std::string& prefix) const {
   return output;
 }
 
-
-void trie::insert(const std::string& word) {
+void trie::insert(const std::string &word) {
   if (word == "")
     return;
   else {
-    const char        head = word[0];
+    const char head = word[0];
     const std::string tail = getTail(word);
 
     if (dictionary.find(head) == dictionary.end())
@@ -107,8 +108,9 @@ void trie::insert(const std::string& word) {
   }
 }
 
-/* For a given string "abcd", returns the tail "bcd". Returns "" if the string is 1 character or less. */
-std::string trie::getTail(const std::string& word) const {
+/* For a given string "abcd", returns the tail "bcd". Returns "" if the string
+ * is 1 character or less. */
+std::string trie::getTail(const std::string &word) const {
   std::string output = "";
   if (word.length() > 0)
     output = word.substr(1, word.length() - 1);
